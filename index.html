@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michele Forte | Software Developer & Systems Enthusiast</title>
+  <meta name="description" content="Portfolio ufficiale di Michele Forte - Software Developer, Full-Stack & Systems Enthusiast. Founder @ latebet.it, creatore di Newbly Chicily e Runngo.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0d14;
+      --bg-card: rgba(18, 24, 38, 0.7);
+      --bg-card-hover: rgba(26, 35, 56, 0.85);
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(56, 189, 248, 0.4);
+      --primary: #38bdf8;
+      --primary-glow: rgba(56, 189, 248, 0.25);
+      --secondary: #a855f7;
+      --accent: #ec4899;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --text-dim: #6b7280;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-code: 'JetBrains Mono', monospace;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .ambient-light {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .orb {
+      position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.25; animation: float 18s ease-in-out infinite alternate;
+    }
+    .orb-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary); }
+    .orb-2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: var(--secondary); animation-delay: -5s; }
+    .orb-3 { top: 40%; left: 35%; width: 35vw; height: 35vw; background: var(--accent); opacity: 0.15; animation-delay: -10s; }
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, 30px) scale(1.08); }
+      100% { transform: translate(-30px, 50px) scale(0.95); }
+    }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+    header.nav-header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: rgba(10, 13, 20, 0.75); border-bottom: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .brand-logo { font-size: 1.25rem; font-weight: 800; text-decoration: none; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem; }
+    .brand-logo .dot { width: 8px; height: 8px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 10px var(--primary); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: var(--transition); }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: rgba(56, 189, 248, 0.1); border: 1px solid var(--primary); color: var(--primary);
+      padding: 0.5rem 1.25rem; border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; transition: var(--transition);
+    }
+    .nav-cta:hover { background: var(--primary); color: #000; box-shadow: 0 0 20px var(--primary-glow); }
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 0 80px; position: relative; }
+    .hero-content { max-width: 800px; }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.85rem;
+      border-radius: 50px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 0.85rem; color: var(--primary); font-family: var(--font-code); margin-bottom: 1.5rem;
+    }
+    .status-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; }
+    .hero-title { font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-description { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 680px; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      padding: 0.85rem 1.75rem; border-radius: var(--radius-md); font-weight: 600; font-size: 1rem;
+      text-decoration: none; transition: var(--transition); cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--text-main); color: var(--bg-dark); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15); }
+    .btn-glass {
+      background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main);
+      backdrop-filter: blur(10px);
+    }
+    .btn-glass:hover { background: var(--bg-card-hover); border-color: var(--primary); transform: translateY(-2px); }
+    .hero-stats { display: flex; gap: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); }
+    .stat-number { font-size: 2rem; font-weight: 800; color: var(--text-main); font-family: var(--font-code); }
+    .stat-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+    section { padding: 100px 0; }
+    .section-header { margin-bottom: 3.5rem; }
+    .section-subtitle { font-family: var(--font-code); color: var(--primary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .section-title { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.01em; }
+    .glass-card {
+      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg);
+      padding: 2rem; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .glass-card:hover { border-color: var(--border-glow); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .about-text p { color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1.05rem; }
+    .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.5rem; }
+    .highlight-item { background: rgba(255, 255, 255, 0.03); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+    .highlight-item h4 { font-size: 0.95rem; color: var(--primary); margin-bottom: 0.3rem; }
+    .highlight-item p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    .project-filters { display: flex; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color); color: var(--text-muted);
+      padding: 0.5rem 1.25rem; border-radius: 50px; font-size: 0.9rem; cursor: pointer; transition: var(--transition);
+    }
+    .filter-btn.active, .filter-btn:hover { background: var(--primary); color: #000; border-color: var(--primary); font-weight: 600; }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+    .project-card { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+    .project-tag { display: inline-block; font-family: var(--font-code); font-size: 0.75rem; color: var(--secondary); background: rgba(168, 85, 247, 0.1); padding: 0.25rem 0.65rem; border-radius: 50px; margin-bottom: 1rem; }
+    .project-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-main); }
+    .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .tech-pill { font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); background: rgba(255, 255, 255, 0.05); padding: 0.2rem 0.6rem; border-radius: var(--radius-sm); border: 1px solid rgba(255, 255, 255, 0.05); }
+    .project-link { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--primary); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
+    .project-link:hover { gap: 0.7rem; color: var(--text-main); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+    .skill-category-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary); display: flex; align-items: center; gap: 0.5rem; }
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .skill-item { display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; color: var(--text-muted); }
+    .skill-bar { width: 100px; height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; }
+    .skill-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 10px; }
+    .contact-container { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; }
+    .contact-info p { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem; }
+    .contact-method { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; text-decoration: none; color: var(--text-main); }
+    .contact-icon { width: 44px; height: 44px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; color: var(--primary); }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 500; }
+    .form-control { width: 100%; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.85rem 1rem; color: var(--text-main); font-family: var(--font-main); font-size: 0.95rem; transition: var(--transition); }
+    .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+    textarea.form-control { min-height: 120px; resize: vertical; }
+    footer { border-top: 1px solid var(--border-color); padding: 2.5rem 0; text-align: center; color: var(--text-dim); font-size: 0.9rem; }
+    @media (max-width: 900px) {
+      .about-grid, .contact-container { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero-stats { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ambient-light">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <header class="nav-header">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo">
+        <span class="dot"></span> MiFo Labs
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">Chi Sono</a></li>
+        <li><a href="#projects">Progetti</a></li>
+        <li><a href="#skills">Tech Stack</a></li>
+        <li><a href="#contact">Contatti</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Contattami</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="status-badge">
+          <span class="status-dot"></span> Disponibile per nuovi progetti & consulenze
+        </div>
+        <h1 class="hero-title">
+          Costruisco esperienze digitali <span class="gradient-text">robuste, veloci e scalabili.</span>
+        </h1>
+        <p class="hero-description">
+          Ciao, sono <strong>Michele Forte</strong>. Sviluppatore Full-Stack specializzato in architetture TypeScript, React Native (Expo), Node.js serverless e sistemi moderni.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">Esplora Progetti &rarr;</a>
+          <a href="https://github.com" target="_blank" class="btn btn-glass">GitHub Profile</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-number">100%</div>
+            <div class="stat-label">TypeScript & React</div>
+          </div>
+          <div>
+            <div class="stat-number">Cloud Native</div>
+            <div class="stat-label">Cloud Run & Workers</div>
+          </div>
+          <div>
+            <div class="stat-number">Mobile & Web</div>
+            <div class="stat-label">Expo & React Native</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">// Chi Sono</div>
+          <h2 class="section-title">Ingegneria del software con un approccio pragmatico.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              Mi dedico alla creazione di applicazioni moderne curando ogni singolo dettaglio, dalla risposta della UI lato client alle prestazioni del backend serverless.
+            </p>
+            <p>
+              Ho un mindset fortemente orientato al problem solving indipendente: che si tratti di architettare un'app mobile in React Native, gestire build pipeline Android o distribuire microservizi su Cloud Run, la priorità è sempre la qualità del codice e la sicurezza.
+            </p>
+          </div>
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <h4>Clean Code</h4>
+              <p>Architetture tipizzate strictly TypeScript e componenti modulari.</p>
+            </div>
+            <div class="highlight-item">
+              <h4>Security-First</h4>
+              <p>Audit di sicurezza, threat modeling e protezione dei dati.</p>
+            </div>
+            <div class="highlight-item">
+              <h4>Mobile Development</h4>
+              <p>Esperienza su React Native, Expo e build Android/Gradle.</p>
+            </div>
+            <div class="highlight-item">
+              <h4>Serverless Ecosystem</h4>
+              <p>Deploy scalabili su Docker, Google Cloud Run e Cloudflare.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">// Portfolio</div>
+          <h2 class="section-title">Progetti in evidenza</h2>
+        </div>
+        
+        <div class="projects-grid">
+          <div class="glass-card project-card">
+            <div>
+              <span class="project-tag">Mobile App / iOS & Android</span>
+              <h3 class="project-title">Newbly Chicily</h3>
+              <p class="project-desc">Applicazione mobile per la community di runner. Include geolocalizzazione, percorsi interattivi e sfide di gruppo.</p>
+              <div class="project-tech">
+                <span class="tech-pill">React Native</span>
+                <span class="tech-pill">Expo</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">Cloud Run</span>
+              </div>
+            </div>
+            <a href="#" class="project-link">Dettagli architettura &rarr;</a>
+          </div>
+
+          <div class="glass-card project-card">
+            <div>
+              <span class="project-tag">Web Application</span>
+              <h3 class="project-title">LateBet</h3>
+              <p class="project-desc">Piattaforma web satirica e dinamica basata sull'integrazione di API per il tracciamento dei treni in tempo reale (ViaggiaTreno).</p>
+              <div class="project-tech">
+                <span class="tech-pill">JavaScript</span>
+                <span class="tech-pill">Firebase</span>
+                <span class="tech-pill">REST API</span>
+                <span class="tech-pill">CSS3</span>
+              </div>
+            </div>
+            <a href="https://latebet.it" target="_blank" class="project-link">Visita latebet.it &rarr;</a>
+          </div>
+
+          <div class="glass-card project-card">
+            <div>
+              <span class="project-tag">Mobile & Social App</span>
+              <h3 class="project-title">Runngo</h3>
+              <p class="project-desc">Social network per corsa di gruppo, mappatura dei percorsi, tracciamento metriche e badge personalizzati.</p>
+              <div class="project-tech">
+                <span class="tech-pill">React Native</span>
+                <span class="tech-pill">Cloudflare Workers</span>
+                <span class="tech-pill">Expo</span>
+              </div>
+            </div>
+            <a href="#" class="project-link">Info progetto &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">// Competenze Tecniche</div>
+          <h2 class="section-title">Tech Stack & Tools</h2>
+        </div>
+
+        <div class="skills-grid">
+          <div class="glass-card">
+            <h3 class="skill-category-title">Frontend & Mobile</h3>
+            <ul class="skill-list">
+              <li class="skill-item"><span>React / React Native</span> <div class="skill-bar"><div class="skill-fill" style="width: 95%;"></div></div></li>
+              <li class="skill-item"><span>TypeScript / TSX</span> <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div></li>
+              <li class="skill-item"><span>Expo / Android Gradle</span> <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div></li>
+              <li class="skill-item"><span>HTML5 / Modern CSS</span> <div class="skill-bar"><div class="skill-fill" style="width: 95%;"></div></div></li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="skill-category-title">Backend & Cloud</h3>
+            <ul class="skill-list">
+              <li class="skill-item"><span>Node.js / Express</span> <div class="skill-bar"><div class="skill-fill" style="width: 88%;"></div></div></li>
+              <li class="skill-item"><span>Google Cloud Run</span> <div class="skill-bar"><div class="skill-fill" style="width: 82%;"></div></div></li>
+              <li class="skill-item"><span>Firebase / Firestore</span> <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div></li>
+              <li class="skill-item"><span>Cloudflare Workers</span> <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div></li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="skill-category-title">DevOps & Tooling</h3>
+            <ul class="skill-list">
+              <li class="skill-item"><span>Git / GitHub Actions</span> <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div></li>
+              <li class="skill-item"><span>Render / Cloud Deploy</span> <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div></li>
+              <li class="skill-item"><span>Security Audit / Testing</span> <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-subtitle">// Get In Touch</div>
+          <h2 class="section-title">Parliamo del tuo prossimo progetto</h2>
+        </div>
+
+        <div class="contact-container">
+          <div class="contact-info">
+            <p>Hai un'idea per un'app mobile, un progetto web o hai bisogno di un audit di sicurezza e performance sul tuo codice?</p>
+            
+            <a href="mailto:michele.forte@example.com" class="contact-method">
+              <div class="contact-icon">&#9993;</div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Email Direct</div>
+                <div style="font-weight: 600;">Contattami via email</div>
+              </div>
+            </a>
+
+            <a href="https://latebet.it" target="_blank" class="contact-method">
+              <div class="contact-icon">&#127760;</div>
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Website</div>
+                <div style="font-weight: 600;">latebet.it</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="glass-card">
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Nome / Azienda</label>
+                <input type="text" id="name" class="form-control" placeholder="Il tuo nome" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="nome@azienda.com" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Messaggio</label>
+                <textarea id="message" class="form-control" placeholder="Descrivi brevemente il tuo progetto o la tua richiesta..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Invia Messaggio &rarr;</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Michele Forte (MiFo Labs). Tutti i diritti riservati.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Grazie per aver inviato il messaggio! Ti risponderò al più presto.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
